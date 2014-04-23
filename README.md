@@ -1,5 +1,13 @@
 Provides an instrumented mailbox that tracks size of the message queue and the rate of enqueued messages. The metrics registry is provided via a singleton object. Probably this should only be used for development, not during production. Inspired by Patrik Nordwalls [LoggingMailbox](https://gist.githubusercontent.com/patriknw/5946678/raw/2d4012ac8afdfa690bffbb92dfeb68bc6745ae0f/LoggingMailbox.scala)
 
+In order to activate the mailbox for all actors (which might not necessarily make sense at all):
+
+    akka.actor.default-mailbox {
+      mailbox-type = akka.contrib.mailbox.InstrumentedMailboxType
+    }
+
+If you want to use it only for specific actors, have a look at the [documentation](http://doc.akka.io/docs/akka/2.3.2/scala/mailboxes.html).
+
 Either copy the sources to your project or publish the project locally:
 
     sbt publish-local
